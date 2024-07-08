@@ -1,11 +1,11 @@
-# Feedback Form API
+# Feedback Form API (Achelois)
 
 ## Development Setup
 
 ### Clone the Repository
    ```bash
-   git clone <repository-url>
-   cd feedback_form
+   git clone <repository-url> #can use ssh or https
+   cd achelois
    ```
 
 ### Python Environment
