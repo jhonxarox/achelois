@@ -80,6 +80,18 @@ alembic upgrade head
 uvicorn app.main:app --reload
 ```
 
+If you find Cors on file `app/main.py` :
+```python
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:8080", "http://localhost:5173"],  # Update this with your frontend URL and backend
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+```
+
 ### Running Tests
 1. Install testing libraries:
 
