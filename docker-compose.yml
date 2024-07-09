@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+
+  backend:
+    build: .
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://myuser:mypassword@db/mydatabase
+      - DATABASE_URL_SYNC=postgresql://myuser:mypassword@db/mydatabase
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
