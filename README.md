@@ -8,6 +8,18 @@
    cd achelois
    ```
 
+## Run using Docker
+Build and Run the Docker Container
+To build and run the Docker container, use the following command:
+
+```bash
+docker-compose up --build
+```
+This will start the frontend application inside a Docker container. Open your browser and navigate to http://localhost:8080 to see the application.
+
+
+## Run Manually
+
 ### Python Environment
 1. Create a virtual environment:
 
