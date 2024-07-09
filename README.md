@@ -65,7 +65,7 @@ alembic init alembic
 2. Configure Alembic on `alembic.ini`: 
 
 ```ini
-sqlalchemy.url = postgresql+asyncpg://jhonarox:test123@localhost/ttdatabase
+sqlalchemy.url = postgresql+asyncpg://username:password@localhost/databasename
 ```
 
 3. Create and apply migrations:
@@ -75,9 +75,64 @@ alembic revision --autogenerate -m "Initial migration"
 alembic upgrade head
 ```
 
-### Running the Application
+## Running the Application
 ```bash
 uvicorn app.main:app --reload
+```
+
+### How to hit the API
+To hit the API on the backend directly, you can use tools like curl, Postman, or Python scripts. Here are examples of how you can do this using each method:
+
+#### Using curl
+You can use curl to send a POST request to the backend API. Open your terminal and run:
+
+```bash
+curl -X POST "http://127.0.0.1:8000/feedback/" -H "Content-Type: application/json" -d '{"rating": 5}'
+```
+
+#### Using Postman
+1. Open Postman and create a new POST request.
+2. Enter the URL: `http://127.0.0.1:8000/feedback/`
+3. Set the Headers:
+```json
+Key: Content-Type
+Value: application/json
+```
+4. Set the Body to raw JSON and enter the following payload:
+```json
+{
+  "rating": 5
+}
+```
+5. Send the Request and check the response.
+
+#### Using Python Script
+You can also use a Python script with the requests library to send a POST request to the API:
+
+```python
+import requests
+
+url = "http://127.0.0.1:8000/feedback/"
+payload = {
+    "rating": 5
+}
+headers = {
+    "Content-Type": "application/json"
+}
+
+response = requests.post(url, json=payload, headers=headers)
+
+print(response.status_code)
+print(response.json())
+```
+Instructions for Python Script:
+- Install the requests library if you don't have it installed:
+```bash
+pip install requests
+```
+- Run the script:
+``` bash
+python script_name.py
 ```
 
 If you find Cors on file `app/main.py` :
@@ -133,3 +188,4 @@ List of API endpoints and their usage can be accessed via Swagger UI at http://1
 
 ## License
 Project license information.
+
